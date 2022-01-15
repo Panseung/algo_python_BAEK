@@ -36,8 +36,9 @@ for goal in range(min_goal, max_goal + 1):
             filling_block += tiles[i] * (goal - i)
     if B + mining_block < filling_block:
         continue
-
     need_time = filling_block + mining_block * 2
+    if result_sec == 0:
+        result_sec = need_time
     if need_time <= result_sec:
         result_sec = need_time
         result_height = goal
