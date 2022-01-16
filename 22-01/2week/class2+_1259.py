@@ -1,4 +1,4 @@
-# 1259. 팰린드롬수
+# 1259. 팰린드롬 수
 # Level Bronze1
 # Link : https://www.acmicpc.net/problem/1259
 
