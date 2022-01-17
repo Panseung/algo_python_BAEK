@@ -32,9 +32,9 @@ set_lst.sort()
 mode_idx = max_freq_idx[min(1, len(max_freq_idx) - 1)]
 print(set_lst)
 print(max_freq_idx)
-print(mode_idx)
 
 
 print(round(sum(lst) / N))
 print(lst[N // 2])
+print(mode_idx)
 print(max(lst) - min(lst))
