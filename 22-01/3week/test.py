@@ -5,14 +5,28 @@
 import sys
 
 N, M = map(int, input().split())
-tree = list(map(int, sys.stdin.readline().split()))
+trees = list(map(int, sys.stdin.readline().split()))
 
-max_height = max(tree)
-for height in range(max_height, -1, -1):
-    sumV = 0
-    for i in range(N):
-        if tree[i] > height:
-            sumV += tree[i] - height
-    if sumV >= M:
-        print(height)
+start = 0
+end = max(trees)
+
+while start < end:
+    middle = (start + end) // 2
+    cnt = 0
+    for tree in trees:
+        if tree > middle:
+            cnt += tree - middle
+
+    if end - start == 1:
+        cnt = 0
+        for tree in trees:
+            if tree > end:
+                cnt += tree - end
+        if cnt >= M:
+            start = end
         break
+    elif cnt >= M:
+        start = middle
+    else:
+        end = middle - 1
+print(start)

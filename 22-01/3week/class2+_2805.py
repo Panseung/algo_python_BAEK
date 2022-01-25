@@ -16,11 +16,17 @@ while start < end:
     for tree in trees:
         if tree > middle:
             cnt += tree - middle
-    if cnt > M:
-        start = middle
-    elif cnt == M:
-        start = middle
+
+    if end - start == 1:
+        cnt = 0
+        for tree in trees:
+            if tree > end:
+                cnt += tree - end
+        if cnt >= M:
+            start = end
         break
+    if cnt >= M:
+        start = middle
     else:
-        end = middle
+        end = middle - 1
 print(start)
