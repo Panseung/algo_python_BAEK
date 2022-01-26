@@ -2,31 +2,36 @@
 # Level Silver3
 # Link : https://www.acmicpc.net/problem/2805
 
+
 import sys
+from collections import Counter
 
-N, M = map(int, input().split())
-trees = list(map(int, sys.stdin.readline().split()))
+num, target = map(int, sys.stdin.readline().split())
 
-start = 0
-end = max(trees)
+ary = list(map(int, sys.stdin.readline().split()))  # 개수는 num
+counter = Counter(ary)
+result = max(ary) + 1
+cnt = 0
 
-while start < end:
-    middle = (start + end) // 2
-    cnt = 0
-    for tree in trees:
-        if tree > middle:
-            cnt += tree - middle
 
-    if end - start == 1:
-        cnt = 0
-        for tree in trees:
-            if tree > end:
-                cnt += tree - end
-        if cnt >= M:
-            start = end
-        break
-    elif cnt >= M:
-        start = middle
+def midsum(mid):
+    sum = 0
+    for k, v in counter.items():
+        if k > mid:
+            sum += (k - mid) * v  # v는 갯수
+    return sum
+
+l = 0
+r = 1000000000
+
+while l <= r:
+    m = (l + r) // 2
+    cnt = midsum(m)
+
+    if cnt < target:
+        r = m - 1
     else:
-        end = middle - 1
-print(start)
+        l = m + 1
+        result = m
+
+print(result)
