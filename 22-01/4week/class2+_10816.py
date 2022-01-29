@@ -6,7 +6,7 @@ import sys
 
 my_input = sys.stdin.readline
 
-N = int(my_input())d
+N = int(my_input())
 cards = list(map(int, my_input().split()))
 cards.sort()
 M = int(my_input())
