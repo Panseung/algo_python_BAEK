@@ -8,21 +8,14 @@ my_input = sys.stdin.readline
 
 N = int(my_input())
 cards = list(map(int, my_input().split()))
-cards.sort()
 M = int(my_input())
 result_cards = list(map(int, my_input().split()))
-minV, maxV = min(result_cards), max(result_cards)
 
-new_cards = list()
+cards_set = list(set(cards + result_cards))
+dic = dict()
+for card in cards_set:
+    dic[card] = 0
 for card in cards:
-    if minV <= card <= maxV:
-        new_cards.append(card)
-
+    dic[card] += 1
 for card in result_cards:
-    cnt = 0
-    for card2 in new_cards:
-        if card == card2:
-            cnt += 1
-        elif card < card2:
-            break
-    print(cnt, end=' ')
+    print(dic[card], end=' ')

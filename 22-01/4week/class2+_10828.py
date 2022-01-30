@@ -3,8 +3,7 @@
 # Link : https://www.acmicpc.net/problem/10828
 
 import sys
-
-my_input = sys.stdin.readline()
+my_input = sys.stdin.readline
 
 
 def my_func(func):
@@ -30,7 +29,7 @@ def my_func(func):
 stack = list()
 N = int(my_input())
 for _ in range(N):
-    func = my_input()
+    func = my_input().strip()
     if len(func) >= 6:
         stack.append(func[5:])
     else:
