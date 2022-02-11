@@ -10,8 +10,12 @@ people = list()
 N = int(my_input())
 for i in range(N):
     weight, height = map(int, my_input().split())
-    people.append([weight,height,i])
+    people.append([weight,height])
 
-people.sort()
-print(*people, sep='\n')
+for i in people:
+    cnt = 1
+    for j in people:
+        if i[0] < j[0] and i[1] < j[1]:
+            cnt += 1
+    print(cnt, end=" ")
 
