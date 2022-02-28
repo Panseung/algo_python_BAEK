@@ -4,15 +4,17 @@
 
 import sys
 
+zero = [1, 0, 1]
+one = [0, 1, 1]
+
 
 def fibonacci(num):
-    if num == 0:
-        result[0] += 1
-    elif num == 1:
-        result[1] += 1
-    else:
-        fibonacci(num - 1)
-        fibonacci(num - 2)
+    length = len(zero)
+    if num >= length:
+        for i in range(length, num + 1):
+            zero.append(zero[i - 1] + zero[i - 2])
+            one.append(one[i - 1] + one[i - 2])
+    print(zero[num], one[num])
 
 
 my_input = sys.stdin.readline
@@ -20,6 +22,4 @@ my_input = sys.stdin.readline
 T = int(my_input())
 for tc in range(T):
     N = int(my_input())
-    result = [0, 0]
     fibonacci(N)
-    print(*result)
