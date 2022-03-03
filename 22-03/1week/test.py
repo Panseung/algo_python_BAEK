@@ -1,6 +1,4 @@
-for x in range(4):
-    if x == 2:
-        print('loop out')
-        break
-else:
-    print('loop end')
+alpha = []
+for i in range(ord('A'), ord('z') + 1):
+    alpha.append(chr(i))
+print(alpha)
