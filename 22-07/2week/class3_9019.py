@@ -1,19 +1,15 @@
 # 9019. DSLR
 # Level Gold4
 # Link : https://www.acmicpc.net/problem/9019
-
+# pypy3 제출
 
 from collections import deque
 
 d = ['D', 'S', 'L', 'R']
 
 
-def lengthing(number):
-    return '0' * (4 - len(number)) + number
-
-
 def solve(cmd, number):
-    r_num = int(number)
+    r_num = number
     if cmd == 'D':
         r_num *= 2
         if r_num >= 10000:
@@ -32,16 +28,12 @@ def solve(cmd, number):
         tmp_num = r_num % 10
         r_num //= 10
         r_num += tmp_num * 1000
-    return lengthing(str(r_num))
+    return r_num
 
 
 T = int(input())
 for _ in range(T):
-    A, B = input().split()
-    if not A == '0':
-        A = lengthing(A)
-    if not B == '0':
-        B = lengthing(B)
+    A, B = map(int, input().split())
 
     visit = [0] * 10000
     q = deque()
