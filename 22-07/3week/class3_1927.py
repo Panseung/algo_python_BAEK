@@ -3,18 +3,18 @@
 # Link : https://www.acmicpc.net/problem/1927
 
 import sys
-from collections import deque
+import heapq
 
 N = int(input())
-q = deque()
+heap = []
 
 for _ in range(N):
     cmd = int(sys.stdin.readline().rstrip())
     if cmd > 0:
-        q.append(cmd)
+        heapq.heappush(heap, cmd)
     else:
-        if q:
-            q = deque(sorted(q))
-            print(q.popleft())
+        if heap:
+            print(heapq.heappop(heap))
         else:
             print(0)
+
