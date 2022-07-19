@@ -6,41 +6,52 @@ import sys
 
 N = int(sys.stdin.readline())
 houses = [list(map(int, sys.stdin.readline().split())) for _ in range(N)]
-answer = 1e9
-dp = [1e9] * N
-color = 0
 
-for i in range(3):
-    val1 = houses[0][i]
-    for j in range(3):
-        if i == j:
-            continue
-        for k in range(3):
-            val2 = val1 + houses[1][j]
-            if j == k:
-                continue
-            val3 = val2 + houses[2][k]
-            if val3 < dp[1]:
-                dp[2] = val3
-                dp[1] = val2
-                dp[0] = val1
-                color = j
-
-idx = 3
-while idx < N:
-    res_v = dp[idx - 2]
-    next_color = color
+# 집 갯수 3개 이하일 때 고려해주기!!!!!!!!!!!!!
+if N <= 2:
+    v = 2000
     for i in range(3):
-        if i == color:
-            continue
         for j in range(3):
             if i == j:
                 continue
-            next_v = res_v + houses[idx - 1][i] + houses[idx][j]
-            if dp[idx] > next_v:
-                dp[idx - 1] = res_v + houses[idx - 1][i]
-                dp[idx] = next_v
-                next_color = i
-    idx += 1
-    color = next_color
-print(dp[N - 1])
+            tmp = houses[0][i] + houses[1][j]
+            if tmp < v:
+                v = tmp
+    print(v)
+else:
+    answer = 1e9
+    dp = [1e9] * N
+    color = -1
+    for i in range(3):
+        for j in range(3):
+            if i == j:
+                continue
+            for k in range(3):
+                if j == k:
+                    continue
+                v = houses[0][i] + houses[1][j] + houses[2][k]
+                if v < dp[2]:
+                    dp[2] = v
+                    dp[1] = houses[0][i] + houses[1][j]
+                    dp[0] = houses[0][i]
+                    color = i
+    idx = 0
+    while idx < N - 3:
+        idx += 1
+        next_color = -1
+        for i in range(3):
+            if i == color:
+                continue
+            for j in range(3):
+                if i == j:
+                    continue
+                for k in range(3):
+                    if j == k:
+                        continue
+                    v = dp[idx - 1] + houses[idx][i] + houses[idx + 1][j] + houses[idx + 2][k]
+                    if v < dp[idx + 2]:
+                        dp[idx + 2] = v
+                        next_color = i
+        color = next_color
+
+    print(dp[N - 1])
